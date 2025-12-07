@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Abdi Mekonin—Full-Stack Developer</title>
+<meta name="description" content="Abdi Mekonin — Full-Stack Developer. Ultra-premium neon portfolio with 3D hero, particles, AI chat, timeline, projects, and more." />
+<!-- Libraries -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+<link rel="stylesheet" href="./portfolio.css">
+</head>
+<body data-theme="dark">
+<!-- Loading overlay -->
+<div id="loading" aria-hidden="false">
+  <div class="logo-am" style="width:64px;height:64px;font-size:20px">AM</div>
+  <div style="height:18px"></div>
+  <div class="loader-ring" aria-hidden="true"></div>
+  <div style="height:14px"></div>
+  <small style="color:var(--muted)">Loading portfolio—hold on...</small>
+</div>
+
+<!-- matrix optional -->
+<canvas id="matrix"></canvas>
+
+<!-- parallax layers -->
+<div class="parallax" aria-hidden="true">
+  <div class="layer bg-shape"></div>
+  <div class="layer mid-shape"></div>
+  <div class="layer front-shape"></div>
+</div>
+
+<!-- floating icons -->
+<div class="floating-icons" aria-hidden="true">
+  <svg class="float" style="left:6%;top:12%;width:100px;height:100px;opacity:.08" viewBox="0 0 24 24" fill="none"><path d="M3 6h18" stroke="url(#s)" stroke-width="1.5" stroke-linecap="round"/></svg>
+  <!-- add more SVGs or images with different positions -->
+</div>
+
+<!-- particle canvas -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- custom cursor -->
+<div class="cursor" id="cursor"></div>
+
+<header>
+  <div class="nav-wrap container">
+    <div class="brand">
+      <div class="logo-am" aria-hidden="true">AM</div>
+      <div>
+        <div style="font-weight:700">Abdi Mekonin</div>
+        <small style="color:var(--muted);display:block">Full-Stack•Web•AI</small>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <nav class="d-none d-md-flex align-items-center">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="mode-toggle" id="themeToggle" title="Toggle theme"></button>
+      <button class="btn btn-sm btn-outline" id="matrixToggle" title="Toggle Matrix Rain">Matrix</button>
+      <a class="btn btn-sm btn-primary ms-2" href="AbdiMekonin_CV.pdf" download><i class="fa fa-download me-2"></i>Download CV</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left" data-aos="fade-right">
+      <div class="badge">Full-Stack•Web•AI</div>
+      <h1 class="mt-3">Hi I'm<span class="accent">Abdi Mekonin</span><br><small style="font-weight:600;color:var(--muted)">Full-Stack Developer</small></h1>
+      <p class="lead">I design and build fast,accessible,and visually striking web applications—with scalable architecture and AI-powered automation.</p>
+
+      <div style="margin-top:1rem">
+        <span id="typewriter" style="font-weight:700;color:var(--accent1)">Software Developer</span>
+        <span style="display:inline-block;width:10px;height:22px;background:linear-gradient(90deg,var(--accent2),var(--accent1));margin-left:8px;vertical-align:middle;animation:blink 1s steps(2) infinite"></span>
+      </div>
+
+      <div class="cta mt-4">
+        <a href="#projects" class="btn btn-primary"><i class="fa fa-briefcase me-2"></i>View Projects</a>
+        <a href="#contact" class="btn btn-outline"><i class="fa fa-envelope me-2"></i>Hire Me</a>
+      </div>
+
+      <div class="row mt-4 g-3">
+        <div class="col-6"><div class="card-clean"><strong>Location</strong><div class="text-muted small">Ethiopia</div></div></div>
+        <div class="col-6"><div class="card-clean"><strong>Experience</strong><div class="text-muted small">1+ years</div></div></div>
+      </div>
+
+      <div class="mt-4 counters">
+        <div class="counter"><h3 id="c1">0</h3><small>Projects</small></div>
+        <div class="counter"><h3 id="c2">0</h3><small>Students Mentored</small></div>
+        <div class="counter"><h3 id="c3">0</h3><small>Hours Coding</small></div>
+      </div>
+
+      <!-- language wheel -->
+      <div class="wheel-wrap mt-4" aria-hidden="true">
+        <div class="wheel" id="langWheel" title="Tech wheel">
+          <!-- items positioned by JS -->
+        </div>
+      </div>
+    </div>
+
+    <div class="portrait-wrap" data-aos="zoom-in">
+      <div class="neon-ring" aria-hidden="true"></div>
+      <div class="halo" aria-hidden="true"></div>
+      <div class="portrait-card" id="portraitCard" role="img" aria-label="Portrait">
+        <div class="portrait-glass">
+          <!abdi.jpg or a base64 data URI -->
+          <img class="portrait-img" id="portraitImg" src="./photo_2025-11-29_06-49-10.jpg" alt="Abdi Mekonin" height="430px">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-5" data-aos="fade-up">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-7">
+        <h3>About Me</h3>
+        <p>I build production-ready web apps, robust APIs, and AI-driven tools. I mentor, create content (Hope Mak Daily AI), and lead projects that solve real problems.</p>
+
+        <div class="row g-3 mt-3">
+          <div class="col-md-6"><div class="card-clean"><strong>What I do</strong><div class="text-muted small">Full-stack apps, system design, mentoring</div></div></div>
+          <div class="col-md-6"><div class="card-clean"><strong>Open to</strong><div class="text-muted small">Freelance, remote, collaboration</div></div></div>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="card-clean">
+          <h6 class="mb-2">Skills</h6>
+          <div class="mb-2 small text-muted">HTML / CSS</div><div class="skill-bar"><i style="display:block;height:10px;width:95%;background:linear-gradient(90deg,var(--accent1),var(--accent2));border-radius:999px"></i></div>
+          <div class="mb-2 mt-3 small text-muted">JavaScript</div><div class="skill-bar"><i style="display:block;height:10px;width:90%;background:linear-gradient(90deg,var(--accent1),var(--accent2));border-radius:999px"></i></div>
+          <div class="mb-2 mt-3 small text-muted">Node.js / Databases</div><div class="skill-bar"><i style="display:block;height:10px;width:85%;background:linear-gradient(90deg,var(--accent1),var(--accent2));border-radius:999px"></i></div>
+          <div class="mb-2 mt-3 small text-muted">Python / AI</div><div class="skill-bar"><i style="display:block;height:10px;width:80%;background:linear-gradient(90deg,var(--accent1),var(--accent2));border-radius:999px"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- PROJECTS -->
+  <section id="projects" class="container py-5" data-aos="fade-up">
+    <h3>Featured Projects</h3>
+    <div class="projects-grid mt-3">
+      <!-- Flip card 1 -->
+      <div class="flip-card" data-tilt data-tilt-glare="true" data-tilt-max="12" data-tilt-speed="600">
+        <div class="flip-card-inner">
+          <div class="flip-front card-clean">
+            <img src="./photo_2025-11-29_06-49-10.jpg" alt="University Club">
+            <div>
+              <h5 class="mt-2">University Club  Managment System</h5>
+              <p class="text-muted small">Oracle object-relational system with packages, triggers, and reports.</p>
+            </div>
+            <div class="d-flex gap-2 mt-2 align-items-center">
+              <button class="btn btn-sm btn-outline-light view-details" data-title="University Club System">Details</button>
+              <a class="ms-auto btn btn-sm btn-primary" href="#" target="_blank">Repo</a>
+            </div>
+          </div>
+
+          <div class="flip-back">
+            <h6>Stack & Highlights</h6>
+            <div class="mb-2"><span class="tag">Oracle PL/SQL</span> <span class="tag">Triggers</span> <span class="tag">Reporting</span></div>
+            <p class="small text-muted">Complete object-relational model, stored procedures, error logging, and admin reporting tools.</p>
+            <a class="btn btn-sm btn-primary" href="#" target="_blank">View Repo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flip card 2 -->
+      <div class="flip-card" data-tilt data-tilt-glare="true" data-tilt-max="12" data-tilt-speed="600">
+        <div class="flip-card-inner">
+          <div class="flip-front card-clean">
+            <img src="./photo_2025-11-29_06-49-10.jpg" alt="Flight Reservation">
+            <div>
+              <h5 class="mt-2">Flight Reservation (C++)</h5>
+              <p class="text-muted small">C++ booking system with graphs and priority queues.</p>
+            </div>
+            <div class="d-flex gap-2 mt-2 align-items-center">
+              <button class="btn btn-sm btn-outline-light view-details" data-title="Flight Reservation">Details</button>
+              <a class="ms-auto btn btn-sm btn-primary" href="#" target="_blank">Repo</a>
+            </div>
+          </div>
+
+          <div class="flip-back">
+            <h6>Stack & Highlights</h6>
+            <div class="mb-2"><span class="tag">C++</span> <span class="tag">Graphs</span> <span class="tag">DSA</span></div>
+            <p class="small text-muted">Robust booking engine, priority queues for seating, and pathfinding for routing.</p>
+            <a class="btn btn-sm btn-primary" href="#" target="_blank">View Repo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flip card 3 -->
+      <div class="flip-card" data-tilt data-tilt-glare="true" data-tilt-max="12" data-tilt-speed="600">
+        <div class="flip-card-inner">
+          <div class="flip-front card-clean">
+            <img src="./photo_2025-11-29_06-49-10.jpg" alt="Hope Mak Daily AI" height="20px">
+            <div>
+              <h5 class="mt-2">Hope Mak Daily AI</h5>
+              <p class="text-muted small">Content pipeline and automation for YouTube AI videos.</p>
+            </div>
+            <div class="d-flex gap-2 mt-2 align-items-center">
+              <button class="btn btn-sm btn-outline-light view-details" data-title="Hope Mak Daily AI">Details</button>
+              <a class="ms-auto btn btn-sm btn-primary" href="#" target="_blank">Watch</a>
+            </div>
+          </div>
+
+          <div class="flip-back">
+            <h6>Stack & Highlights</h6>
+            <div class="mb-2"><span class="tag">Python</span> <span class="tag">Automation</span> <span class="tag">YouTube</span></div>
+            <p class="small text-muted">Automated content pipeline, metadata generation, and video automation tooling.</p>
+            <a class="btn btn-sm btn-primary" href="#" target="_blank">Live Demo</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  
+  <section id="timeline" class="py-5" data-aos="fade-up">
+    <h3>Timeline</h3>
+    <div class="timeline mt-3">
+      <div class="timeline-item"><div class="dot"></div><strong>2021</strong><div class="small text-muted">Started coding</div></div>
+      <div class="timeline-item"><div class="dot"></div><strong>2022</strong><div class="small text-muted">Joined Haramaya University</div></div>
+      <div class="timeline-item"><div class="dot"></div><strong>2023</strong><div class="small text-muted">Hero Team Instructor</div></div>
+      <div class="timeline-item"><div class="dot"></div><strong>2024</strong><div class="small text-muted">Adis AI Ambassador</div></div>
+      <div class="timeline-item"><div class="dot"></div><strong>2025</strong><div class="small text-muted">Hope Mak Daily AI</div></div>
+    </div>
+  </section>
+
+  <!-- Testimonials & fun facts -->
+  <section id="social" class="py-5" data-aos="fade-up">
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <h3>Testimonials</h3>
+        <div class="testimonials mt-3">
+          <div class="test-card"><strong>Lecturer</strong><div class="small text-muted">"Abdi's work on the club system was robust and well-documented."</div></div>
+          <div class="test-card"><strong>Student</strong><div class="small text-muted">"Great mentor — clear and patient."</div></div>
+          <div class="test-card"><strong>Team Lead</strong><div class="small text-muted">"Reliable and proactive developer."</div></div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <h3>Fun Facts</h3>
+        <div class="card-clean mt-3 p-3">
+          <div><strong>Languages</strong></div>
+          <div class="wheel-wrap"><div class="wheel" id="wheelDisplay" aria-hidden="true"></div></div>
+          <div class="socials mt-3 d-flex gap-2 justify-content-center">
+            <a href="#" title="GitHub"><i class="fa fa-github"></i></a>
+            <a href="#" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+            <a href="mailto:abdimekonin123@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-5" data-aos="fade-up">
+    <h3>Contact</h3>
+    <div class="row mt-3">
+      <div class="col-lg-7">
+        <form id="contactForm">
+          <div class="mb-3"><label class="form-label">Name</label><input id="cname" class="form-control" placeholder="Your name" required></div>
+          <div class="mb-3"><label class="form-label">Email</label><input id="cemail" type="email" class="form-control" placeholder="you@example.com" required></div>
+          <div class="mb-3"><label class="form-label">Message</label><textarea id="cmessage" class="form-control" rows="5" required></textarea></div>
+          <button class="btn btn-primary">Send</button>
+        </form>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="card-clean">
+          <h6>AI Chat (Demo)</h6>
+          <div id="aiChat" style="min-height:220px;border-radius:8px;padding:10px;background:rgba(255,255,255,0.01);border:1px solid var(--glass-border);margin-bottom:.6rem;overflow:auto"></div>
+          <div class="input-group">
+            <input id="aiInput" class="form-control" placeholder="Ask about my work (demo)"/>
+            <button id="aiSend" class="btn btn-primary">Ask</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wave" aria-hidden="true"></div>
+  <small>© <span id="year"></span> Abdi Mekonin — Built with HTML, CSS & JS</small>
+</footer>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="./portfolio.js"></script> 
+</body>
+</html>
+
+
+
+
+
+
+
